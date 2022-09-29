@@ -42,6 +42,7 @@
     --global-color-neutral-xx-dark: #4b4c60;
     --global-color-neutral-xxx-dark: #35374d;
     --global-color-neutral-xxxx-dark: #20223a;
+    --global-color-neutral-blue: #81ADF0;
 
     /* border stuff */
     --global-borderRadius: 3px;
@@ -75,7 +76,17 @@
     --global-input-hover-borderColor: var(--global-color-neutral-xx-light);
     --global-input-focus-borderColor: var(--global-color-alpha);
     --global-input-boxShadow: 0 0 0 3px var(--global-color-alpha-x-transparent);
+
+    /* transitions */
+    --transition-alpha: .1s ease-in-out;
+
+    /* Shadows */
+    --shadow-color: #20223a15;
+    --inset-shadow: inset 0 1px 1px var(--shadow-color);
+    --focus-shadow-color: #3385FF30;
+    --focus-shadow: 0 0 0 3px var(--focus-shadow-color);
 }
+
 
 /*------------------------------------*\
 #GENERIC
@@ -640,6 +651,81 @@ input::placeholder {
     margin-right: var(--global-whitespace-sm);
 }
 
+.c-option-list {
+    margin-bottom: 24px;
+}
+
+.c-option-list__item {
+    margin-bottom: 12px;
+}
+
+.c-option--hidden:checked + .c-custom-option .c-custom-option__symbol{
+    opacity: 1;
+    transition: all var(--transition-alpha);
+    transform: scale(1.1);
+}
+
+
+
+.c-custom-option{
+    display: flex;
+
+}
+
+.c-custom-option__fake-input {
+    display: flex;
+    width: 16px;
+    height: 16px;
+    border: 1px solid var(--global-color-neutral-xxx-light);
+    margin-right: 8px;
+}
+
+.c-custom-option__fake-input:hover{
+    border: 1px solid var(--global-color-alpha-light);
+    box-shadow: var(--focus-shadow);
+}
+
+.c-custom-option__fake-input:active{
+    border: 1px solid var(--global-color-alpha);
+}
+
+.c-option--hidden:focus-visible + .c-custom-option .c-custom-option__fake-input{
+    border: 1px solid var(--global-color-alpha);
+    box-shadow: var(--focus-shadow);
+}
+
+.c-custom-option__fake-input--radio {
+    border-radius: 100%;
+}
+
+.c-custom-option__fake-input--checkbox {
+    border-radius: 3px;
+}
+.c-custom-option__symbol {
+    opacity: 0;
+    display: block;
+    transition: all var(--transition-alpha);
+
+}
+
+
+.c-custom-option__fake-input--checkbox .c-custom-option__symbol {
+  /*Stuff for the checkbox icon...*/
+    width: 10px;
+    height: 10px;
+    margin: auto;
+    fill: var(--global-color-alpha);
+    display: flex;
+}
+
+.c-custom-option__fake-input--radio .c-custom-option__symbol {
+  /*Stuff for the radio button icon...*/
+    width: 6px;
+    height: 6px;
+    background-color: var(--global-color-alpha);
+    margin: auto;
+    border-radius: 100%;
+}
 /*
     Component: Label
     ---
